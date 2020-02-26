@@ -31,41 +31,43 @@ export class ExerciseComponent implements OnInit {
 
   onSubmit(answer: Answer): void {  
     this.isAnswered = true; 
-    if (answer.answer1 == "sou") {
+    if (answer.answer1?.trim().toLowerCase() == "sou") {
       this.answerOne="correct"
       this.result++
     } else {
       this.answerOne="incorrect"
     }
 
-    if (answer.answer2 == "é") {
+    if (answer.answer2?.trim().toLowerCase() == "é") {
       this.answerTwo="correct"
       this.result++
     } else {
       this.answerTwo="incorrect"
     }
 
-    if (answer.answer3 == "é") {
+    if (answer.answer3?.trim().toLowerCase() == "é") {
       this.answerThree="correct"
       this.result++
     } else {
       this.answerThree="incorrect"
     }
 
-    if (answer.answer4 == "está") {
+    if (answer.answer4?.trim().toLowerCase() == "está") {
       this.answerFour="correct"
       this.result++
     } else {
       this.answerFour="incorrect"
     }
 
-    if (answer.answer5 == "está") {
+    if (answer.answer5?.trim().toLowerCase() == "está") {
       this.answerFive="correct"
       this.result++
     } else {
       this.answerFive="incorrect"
     }
     console.log(this.result)
+    console.log(answer.answer5)
+    
 }
 
   resetForm() {
