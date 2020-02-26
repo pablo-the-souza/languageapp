@@ -14,6 +14,8 @@ import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { LearningComponent } from './learning/learning.component';
 import { ExerciseComponent } from './learning/exercise/exercise.component';
 import { TheoryComponent } from './learning/theory/theory.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AnswerService } from './learning/exercise/exercise.service';
 
 @NgModule({
   declarations: [
@@ -30,10 +32,11 @@ import { TheoryComponent } from './learning/theory/theory.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    ReactiveFormsModule
 
   ],
-  providers: [],
+  providers: [AnswerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

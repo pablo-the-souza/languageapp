@@ -1,3 +1,59 @@
 Using the verb conjugation you learned in the "Verb to Be - Present Tense" section, complete the following phrases with the correct conjugation:<br>
-1. Eu ______ alto (I am tall) <br>
-2. Eu ______ triste hoje (I am sad today )
+<form [formGroup]="exercise1" (ngSubmit)="onSubmit(exercise1.value)">
+  <label>
+    1. Eu <input 
+      name="answer1"
+      type="text" 
+      id="answer1"
+      formControlName="answer1" 
+      > gordo (I'm fat)
+  </label>
+  <div *ngIf="isAnswered"><p>{{ this.answerOne }}</p></div>
+<br>
+
+  <label>
+    2. Ela <input 
+      name="answer2"
+      type="text" 
+      id="answer2"
+      formControlName="answer2" 
+      > advogada (She's a lawyer)
+  </label> 
+  <div *ngIf="isAnswered"><p>{{ this.answerTwo }}</p></div>
+  <br>
+  <label>
+    3. Ele <input 
+      name="answer3"
+      type="text" 
+      id="answer3"
+      formControlName="answer3" 
+      > chato (He's annoying)
+  </label> 
+  <div *ngIf="isAnswered"><p>{{ this.answerThree }}</p></div>
+  <br>
+  <label>
+    4. Você <input 
+      name="answer4"
+      type="text" 
+      id="answer4"
+      formControlName="answer4" 
+      > atrasado (You're late)
+  </label> 
+  <div *ngIf="isAnswered"><p>{{ this.answerFour }}</p></div>
+  <br>
+  <label>
+    5. Ela <input 
+      name="answer5"
+      type="text" 
+      id="answer5"
+      formControlName="answer5" 
+      > suada (She's sweaty)
+  </label> 
+  <br>
+  <div *ngIf="isAnswered"><p>{{ this.answerFive }}</p></div>
+  <br>
+  <button *ngIf="!isAnswered" type="submit">Submit</button>
+  <div *ngIf="isAnswered">You answered {{ this.result }} questions correctly</div>
+  <button *ngIf="isAnswered" type="submit" (click)="resetForm()">Try Again</button>
+  
+</form>
