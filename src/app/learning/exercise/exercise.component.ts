@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Answer } from './answer.model';
+import { Answer, AnswerTwo } from './answer.model';
 
 @Component({
   selector: 'app-exercise',
@@ -9,13 +9,33 @@ import { Answer } from './answer.model';
 })
 export class ExerciseComponent implements OnInit {
   exercise1: FormGroup;
-  isAnswered = false; 
+  isAnsweredOne = false; 
   answerOne: string
   answerTwo: string
   answerThree: string
   answerFour: string
   answerFive: string
   result=0; 
+  answerOneCorrect= false;
+  answerTwoCorrect= false;
+  answerThreeCorrect= false;
+  answerFourCorrect= false;
+  answerFiveCorrect= false;
+
+  exercise2: FormGroup;
+  isAnsweredTwo = false; 
+  answerSix: string
+  answerSeven: string
+  answerEight: string
+  answerNine: string
+  answerTen: string
+  result2=0; 
+  answerSixCorrect= false;
+  answerSevenCorrect= false;
+  answerEightCorrect= false;
+  answerNineCorrect= false;
+  answerTenCorrect= false;
+
 
   constructor(
     ) { }
@@ -27,10 +47,17 @@ export class ExerciseComponent implements OnInit {
       'answer3' : new FormControl(null),
       'answer4' : new FormControl(null),
       'answer5' : new FormControl(null),   });
+
+      this.exercise2 = new FormGroup({
+        'answer1' : new FormControl(null),
+        'answer2' : new FormControl(null),
+        'answer3' : new FormControl(null),
+        'answer4' : new FormControl(null),
+        'answer5' : new FormControl(null),   });
   }
 
   onSubmit(answer: Answer): void {  
-    this.isAnswered = true; 
+    this.isAnsweredOne = true; 
     if (answer.answer1?.trim().toLowerCase() == "sou") {
       this.answerOne="correct"
       this.result++
@@ -66,13 +93,48 @@ export class ExerciseComponent implements OnInit {
       this.answerFive="incorrect"
     }
     console.log(this.result)
-    console.log(answer.answer5)
+
     
+}
+
+onSubmitTwo(answerTwo: AnswerTwo): void {  
+  this.isAnsweredTwo = true; 
+  if (answerTwo.answer1?.trim().toLowerCase() == "vou") {
+    this.answerSixCorrect=true; 
+    this.result2++
+  }
+
+  if (answerTwo.answer2?.trim().toLowerCase() == "vai") {
+    this.answerSevenCorrect=true;
+    this.result2++
+  }
+
+  if (answerTwo.answer3?.trim().toLowerCase() == "vamos") {
+    this.answerEightCorrect=true; 
+    this.result2++
+  }
+
+  if (answerTwo.answer4?.trim().toLowerCase() == "vou") {
+    this.answerNineCorrect=true; 
+    this.result2++
+  }
+
+  if (answerTwo.answer5?.trim().toLowerCase() == "vão") {
+    this.answerTenCorrect=true;
+    this.result2++
+  }
+  
 }
 
   resetForm() {
     this.exercise1.markAsPristine();
     this.exercise1.reset();
-    this.isAnswered = false; 
+    this.isAnsweredOne = false; 
+  }
+
+  resetFormTwo() {
+    this.exercise2.markAsPristine();
+    this.exercise2.reset();
+    this.isAnsweredTwo = false; 
   }
 }

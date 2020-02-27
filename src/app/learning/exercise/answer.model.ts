@@ -5,3 +5,11 @@ export interface Answer {
   answer4: string;
   answer5: string;
 }
+
+export interface AnswerTwo {
+  answer1: string;
+  answer2: string;
+  answer3: string;
+  answer4: string;
+  answer5: string;
+}

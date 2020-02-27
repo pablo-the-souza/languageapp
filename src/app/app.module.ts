@@ -14,8 +14,15 @@ import { SidebarComponent } from './navigation/sidebar/sidebar.component';
 import { LearningComponent } from './learning/learning.component';
 import { ExerciseComponent } from './learning/exercise/exercise.component';
 import { TheoryComponent } from './learning/theory/theory.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
+
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
+
 import { AnswerService } from './learning/exercise/exercise.service';
+import { AnswerDirective } from './learning/exercise/answer.directive';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +32,11 @@ import { AnswerService } from './learning/exercise/exercise.service';
     SidebarComponent,
     LearningComponent,
     ExerciseComponent,
-    TheoryComponent
+    TheoryComponent,
+    RegisterComponent,
+    LoginComponent,
+    AnswerDirective
+
   ],
   imports: [
     BrowserModule,
@@ -33,7 +44,8 @@ import { AnswerService } from './learning/exercise/exercise.service';
     BrowserAnimationsModule,
     MaterialModule,
     FlexLayoutModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [AnswerService],
