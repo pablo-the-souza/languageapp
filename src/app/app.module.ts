@@ -16,6 +16,10 @@ import { ExerciseComponent } from './learning/exercise/exercise.component';
 import { TheoryComponent } from './learning/theory/theory.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
+import { Exercise1Component } from './learning/exercise/exercise1/exercise1.component';
+import { Exercise2Component } from './learning/exercise/exercise2/exercise2.component';
+import { Exercise3Component } from './learning/exercise/exercise3/exercise3.component';
+import { ExerciseTestsComponent } from './learning/exercise/exercisetests/exercisetests.component';
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
@@ -35,7 +39,11 @@ import { AnswerDirective } from './learning/exercise/answer.directive';
     TheoryComponent,
     RegisterComponent,
     LoginComponent,
-    AnswerDirective
+    AnswerDirective,
+    Exercise1Component,
+    Exercise2Component,
+    Exercise3Component,
+    ExerciseTestsComponent
 
   ],
   imports: [

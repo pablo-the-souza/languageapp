@@ -1,0 +1,111 @@
+<section class="exercises">
+  <form 
+    fxLayout="column"
+    fxLayoutGap="2px"
+    [formGroup]="exercise1" 
+    (ngSubmit)="onSubmit(exercise1.value)">
+      
+      <label>
+        1. Eu
+        <mat-form-field>
+        <input 
+        name="answer1" 
+        type="text" 
+        id="answer1" 
+        matInput
+        formControlName="answer1"></mat-form-field>
+        duas casas. <span class="translation">(I have two houses)</span>
+      </label>
+      
+      <div class="questionResult" *ngIf="isAnswered">
+        <p *ngIf="answerOneCorrect" class="right">Correct</p>
+        <p *ngIf="!answerOneCorrect" class="wrong">Incorrect</p>
+      </div>
+    
+    
+      
+      <label>
+        2. Nós 
+        <mat-form-field>
+        <input 
+        name="answer2" 
+        type="text" 
+        id="answer2" 
+        matInput
+        formControlName="answer2"></mat-form-field>
+       dois cachorros.<span class="translation"> (We have two dogs)</span>
+      </label>
+      
+      <div class="questionResult" *ngIf="isAnswered">
+        <p *ngIf="answerTwoCorrect" class="right">Correct</p>
+        <p *ngIf="!answerTwoCorrect" class="wrong">Incorrect</p>
+      </div>
+    
+    
+      
+      <label>
+        3. Ele
+        <mat-form-field>
+        <input 
+        name="answer3" 
+        type="text" 
+        id="answer3" 
+        matInput
+        formControlName="answer3"></mat-form-field>
+        uma tatuagem no braço esquerdo. <span class="translation">(He has a tatoo on his left arm)</span>
+      </label>
+      
+      <div class="questionResult" *ngIf="isAnswered">
+        <p *ngIf="answerThreeCorrect" class="right">Correct</p>
+        <p *ngIf="!answerThreeCorrect" class="wrong">Incorrect</p>
+      </div>
+    
+    
+      
+      <label>
+        4. Você
+        <mat-form-field>
+        <input 
+        name="answer4" 
+        type="text" 
+        id="answer4" 
+        matInput
+        formControlName="answer4"></mat-form-field>
+        um carregador? <span class="translation">(Do you have a charger?)</span>
+      </label>
+      
+      <div class="questionResult" *ngIf="isAnswered">
+        <p *ngIf="answerFourCorrect" class="right">Correct</p>
+        <p *ngIf="!answerFourCorrect" class="wrong">Incorrect</p>
+      </div>
+      
+      <label>
+        5. Vocês não
+        <mat-form-field>
+        <input 
+        name="answer5" 
+        type="text" 
+        id="answer5" 
+        matInput
+        formControlName="answer5"></mat-form-field>
+        guarda-chuvas? <span class="translation">(Don't you all have umbrellas?)</span>
+      </label>
+      
+    
+      <div class="questionResult" *ngIf="isAnswered">
+        <p *ngIf="answerFiveCorrect" class="right">Correct</p>
+        <p *ngIf="!answerFiveCorrect" class="wrong">Incorrect</p>
+      </div>
+    
+      <button *ngIf="!isAnswered" type="submit" mat-raised-button color="primary" >Submit</button>
+      <div *ngIf="isAnswered">
+        You answered {{ this.result }} questions correctly
+      </div>
+      <button *ngIf="isAnswered" type="submit" mat-raised-button color="primary"  (click)="resetForm()">
+        Try Again
+      </button>
+    </form>
+    
+    
+  </section>
+  
