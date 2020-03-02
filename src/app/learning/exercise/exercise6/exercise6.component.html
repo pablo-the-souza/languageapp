@@ -9,6 +9,7 @@
       <li>{{ exercise.instruction }}</li>
       <ul *ngFor="let question of exercise.questions; let i = index">
         <li>
+          <span>{{ question.id.toString() }} - </span>
           {{ question.prefix }}
           <mat-form-field>
             <input
@@ -17,21 +18,33 @@
               id="answer"
               matInput
               [formControlName]="question.id"
+              
             />
           </mat-form-field>
           {{ question.sufix }} -
-          {{ question.translation }}
+          <span class="translation">{{ question.translation }}</span>
           <div *ngIf="isAnswered">
-            <div *ngIf="question.result"><p>Correct</p></div>
-            <div *ngIf="!question.result"><p>Incorrect</p></div>
+            <div *ngIf="question.result" class="right"><p>Correct</p></div>
+            <div *ngIf="!question.result" class="wrong"><p>Incorrect</p></div>
           </div>
           
         </li>
       </ul>
     </ul>
-    <button *ngIf="!isAnswered" type="submit" mat-raised-button color="primary">Submit</button>
+    <button 
+    *ngIf="!isAnswered" 
+    type="submit" 
+    mat-raised-button 
+    color="primary"
+    [disabled]="exerciseForm.invalid"
+    >Submit</button>
+    <div *ngIf="isAnswered">
+      You answered {{ result }} questions correctly
+    </div>
     <button *ngIf="isAnswered" type="submit" mat-raised-button color="primary"  (click)="resetForm()">
       Try Again
     </button>
+    
   </form>
 </section>
+

@@ -23,9 +23,10 @@ import { ExerciseTestsComponent } from './learning/exercise/exercisetests/exerci
 
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-
-import { AnswerService } from './learning/exercise/exercise.service';
 import { AnswerDirective } from './learning/exercise/answer.directive';
+import { Exercise4Component } from './learning/exercise/exercise4/exercise4.component';
+import { Exercise5Component } from './learning/exercise/exercise5/exercise5.component';
+import { Exercise6Component } from './learning/exercise/exercise6/exercise6.component';
 
 
 @NgModule({
@@ -43,7 +44,10 @@ import { AnswerDirective } from './learning/exercise/answer.directive';
     Exercise1Component,
     Exercise2Component,
     Exercise3Component,
-    ExerciseTestsComponent
+    ExerciseTestsComponent,
+    Exercise4Component,
+    Exercise5Component,
+    Exercise6Component
 
   ],
   imports: [
@@ -56,7 +60,7 @@ import { AnswerDirective } from './learning/exercise/answer.directive';
     FormsModule
 
   ],
-  providers: [AnswerService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

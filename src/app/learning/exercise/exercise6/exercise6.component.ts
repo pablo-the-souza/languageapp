@@ -1,39 +1,36 @@
 import { Component, OnInit, Input, ɵConsole } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Exercise } from '../shared/exercise.model';
 import { Question } from '../shared/question.model';
+import { ExerciseService } from '../exercise.service';
 
 
 @Component({
-  selector: "app-exercisetests",
-  templateUrl: "./exercisetests.component.html",
-  styleUrls: ["./exercisetests.component.scss"]
+  selector: "app-exercise6",
+  templateUrl: "./exercise6.component.html",
+  styleUrls: ["./exercise6.component.scss"]
+  
 })
-export class ExerciseTestsComponent implements OnInit {
+export class Exercise6Component implements OnInit {
+  exercises: Exercise[];
   exerciseForm: FormGroup;
   isAnswered: boolean; 
   isCorrect: boolean; 
+  result=0; 
+  
 
-  exercises: Exercise[] = [
-    new Exercise("Answer this question", [
-      new Question(1, "Eu", "maluco", "I am crazy", "sou", false),
-      new Question(2, "Eu", "doidinho", "I am cuckoo", "estou", false)
-    ])
-  ];
-
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder,  private exerciseService: ExerciseService) {}
 
   ngOnInit(): void {
+    this.exercises = this.exerciseService.getExercises();
     this.createGroup();
   }
-
-  getAnswersArray() {}
 
   createGroup() {
     this.exerciseForm = this.fb.group({});
     this.exercises[0].questions.forEach(control =>
-      this.exerciseForm.addControl(control.id.toString(), this.fb.control(""))
-    );
+      this.exerciseForm.addControl(control.id.toString(), this.fb.control("", [Validators.required])
+    ))
   }
 
   onSubmit(form) {
@@ -47,8 +44,9 @@ export class ExerciseTestsComponent implements OnInit {
     let y=0
     let i=0; 
     for (const field in this.exerciseForm.controls) {
-      if (this.exerciseForm.controls[field].value == answers[i]) {
+      if (this.exerciseForm.controls[field].value.trim().toLowerCase() == answers[i]) {
         this.exercises[0].questions[y].result = true; 
+        this.result++
       }
       i++
       y++
@@ -58,18 +56,15 @@ export class ExerciseTestsComponent implements OnInit {
   resetForm() {
     this.exerciseForm.markAsPristine();
     this.exerciseForm.reset();
+    this.exerciseForm.updateValueAndValidity();
+   
+
     this.isAnswered = false; 
     let z=0
     this.exercises[0].questions.forEach(n=> {
       this.exercises[0].questions[z].result = false; 
       z++
     })
+    this.result=0
   }
 }
-
-// console.log("Below is the list of answers")
-    // Object.keys(this.exerciseForm.value).forEach((key,index) => {
-    //   console.log(key, this.exerciseForm.value[key])
-    // })
-
-
