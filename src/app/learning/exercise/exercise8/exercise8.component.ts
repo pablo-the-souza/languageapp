@@ -5,12 +5,12 @@ import { ExerciseService } from '../exercise.service';
 
 
 @Component({
-  selector: "app-exercise6",
-  templateUrl: "./exercise6.component.html",
-  styleUrls: ["./exercise6.component.scss"]
+  selector: "app-exercise8",
+  templateUrl: "./exercise8.component.html",
+  styleUrls: ["./exercise8.component.scss"]
   
 })
-export class Exercise6Component implements OnInit {
+export class Exercise8Component implements OnInit {
   singleExercise: Exercise[]; 
   exercises: Exercise[];
   exerciseForm: FormGroup;
@@ -29,7 +29,7 @@ export class Exercise6Component implements OnInit {
   }
 
   createGroup() {
-    this.singleExercise = this.exercises.slice(0,1)
+    this.singleExercise = this.exercises.slice(2)
     this.exerciseForm = this.fb.group({});
     this.singleExercise[0].questions.forEach(control =>
       this.exerciseForm.addControl(control.id.toString(), this.fb.control("", [Validators.required])

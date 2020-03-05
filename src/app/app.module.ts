@@ -27,6 +27,15 @@ import { AnswerDirective } from './learning/exercise/answer.directive';
 import { Exercise4Component } from './learning/exercise/exercise4/exercise4.component';
 import { Exercise5Component } from './learning/exercise/exercise5/exercise5.component';
 import { Exercise6Component } from './learning/exercise/exercise6/exercise6.component';
+import { Exercise7Component } from './learning/exercise/exercise7/exercise7.component';
+import { Exercise8Component } from './learning/exercise/exercise8/exercise8.component';
+import { Exercise9Component } from './learning/exercise/exercise9/exercise9.component';
+
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+
 
 
 @NgModule({
@@ -47,7 +56,10 @@ import { Exercise6Component } from './learning/exercise/exercise6/exercise6.comp
     ExerciseTestsComponent,
     Exercise4Component,
     Exercise5Component,
-    Exercise6Component
+    Exercise6Component,
+    Exercise7Component,
+    Exercise8Component,
+    Exercise9Component
 
   ],
   imports: [
@@ -57,7 +69,9 @@ import { Exercise6Component } from './learning/exercise/exercise6/exercise6.comp
     MaterialModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
 
   ],
   providers: [],

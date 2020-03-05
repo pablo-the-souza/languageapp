@@ -1,22 +1,20 @@
 import { Component, OnInit, Input, ɵConsole } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { AngularFirestore } from "@angular/fire/firestore";
 import "firebase/firestore";
-import { Observable } from "rxjs";
-import { Exercise } from "../shared/exercise.model";
 
 @Component({
-  selector: "app-exercisetests",
-  templateUrl: "./exercisetests.component.html",
-  styleUrls: ["./exercisetests.component.scss"]
+  selector: "app-exercise9",
+  templateUrl: "./exercise9.component.html",
+  styleUrls: ["./exercise9.component.scss"]
 })
-export class ExerciseTestsComponent implements OnInit {
-  exercises: Observable<any>
+export class Exercise9Component implements OnInit {
   exerciseForm: FormGroup;
   isAnswered: boolean;
   isCorrect: boolean;
   exerciseTest: any;
   instructions: any; 
+  result= 0; 
 
   constructor(private fb: FormBuilder, private db: AngularFirestore) {}
 
@@ -24,7 +22,7 @@ export class ExerciseTestsComponent implements OnInit {
     this.db.collection("availableExercises")
     .valueChanges()
     .subscribe(val=> {
-      this.instructions = val.slice(1);
+      this.instructions = val.slice(0,1);
     })
 
     this.db
@@ -33,17 +31,18 @@ export class ExerciseTestsComponent implements OnInit {
       .collection("questions")
       .valueChanges()
       .subscribe(res => {
-        this.exerciseTest = res;
+        this.exerciseTest = res; 
         this.exerciseForm = this.fb.group({});
         this.exerciseTest.forEach(control =>
-          this.exerciseForm.addControl(control.prefix, this.fb.control(""))
+          this.exerciseForm.addControl(control.prefix, this.fb.control("", [Validators.required]))
         );
       });
   }
-
+  
   createGroup() {}
 
   onSubmit(form) {
+    
     this.isAnswered = true;
     let answers = [];
     this.exerciseTest.forEach(pergunta => {
@@ -53,26 +52,25 @@ export class ExerciseTestsComponent implements OnInit {
     let y = 0;
     let i = 0;
     for (const field in this.exerciseForm.controls) {
-      if (this.exerciseForm.controls[field].value == answers[i]) {
-        this.exerciseTest[0].result = true;
+      if (this.exerciseForm.controls[field].value.trim().toLowerCase() == answers[i]) {
+        this.exerciseTest[y].result = true;
+        this.result++
       }
+      console.log(this.exerciseTest)
       i++;
-      y++;
+      y++; 
     }
   }
   resetForm() {
     this.exerciseForm.markAsPristine();
     this.exerciseForm.reset();
+    this.exerciseForm.updateValueAndValidity();
     this.isAnswered = false;
     let z = 0;
-    this.exerciseTest[0].forEach(n => {
-      this.exerciseTest[0].result = false;
+    this.exerciseTest.forEach(n => {
+      this.exerciseTest[z].result = false;
       z++;
     });
+    this.result=0
   }
 }
-
-// console.log("Below is the list of answers")
-// Object.keys(this.exerciseForm.value).forEach((key,index) => {
-//   console.log(key, this.exerciseForm.value[key])
-// })

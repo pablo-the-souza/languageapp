@@ -4,27 +4,82 @@
   <mat-expansion-panel>
     <mat-expansion-panel-header>
       <mat-panel-title class="title">
-        Verb Structure
+        "ar" Verbs Structure
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <mat-list>
-      <mat-list>
-        <mat-list-item> "ar" Verbs - Present Tense</mat-list-item>
-        <mat-list-item> Step 1: Remove "ar" </mat-list-item>
-        <mat-list-item> Step 2: Add sufix as shown below: </mat-list-item>
-        <mat-list-item> Example: "Limpar" - to clean </mat-list-item>
-        <mat-list-item> Eu - Add "o" - limpo</mat-list-item>
-        <mat-list-item> Você - Add "a" - limpa </mat-list-item>
-        <mat-list-item> Ele/Ela - Add "a" - limpa</mat-list-item>
-        <mat-list-item> Nós - add "amos" - limpamos/ A gente gosta - add "a" - limpa</mat-list-item>
-        <mat-list-item> Vocês - Add "am" - limpam</mat-list-item>
-        <mat-list-item> Eles/Elas - Add "am" - limpam</mat-list-item>
-       
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-      </mat-list>   
-    </mat-list>
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+      <!-- PronounColumn -->
+      <ng-container matColumnDef="pronoun">
+        <th mat-header-cell *matHeaderCellDef> Pronoun </th>
+        <td mat-cell *matCellDef="let element"> {{element.pronoun}} </td>
+      </ng-container>
+    
+      <!-- Rule Column -->
+      <ng-container matColumnDef="rule">
+        <th mat-header-cell *matHeaderCellDef> Rule </th>
+        <td class="middle" mat-cell *matCellDef="let element"> {{element.rule}} </td>
+      </ng-container>
+    
+      <!-- Example Column -->
+      
+        <ng-container matColumnDef="example">
+          <th mat-header-cell *matHeaderCellDef> Example: to dance </th>
+          <td class="end" mat-cell *matCellDef="let element"> {{element.example}} </td>
+        </ng-container>
+      
+      
+    
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    
  
 </mat-expansion-panel>
+
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <mat-panel-title class="title">
+      "er" Verbs Structure
+    </mat-panel-title>
+  </mat-expansion-panel-header>
+  <table mat-table [dataSource]="dataSource1" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- PronounColumn -->
+    <ng-container matColumnDef="pronoun">
+      <th mat-header-cell *matHeaderCellDef> Pronoun </th>
+      <td mat-cell *matCellDef="let element"> {{element.pronoun}} </td>
+    </ng-container>
+  
+    <!-- Rule Column -->
+    <ng-container matColumnDef="rule">
+      <th mat-header-cell *matHeaderCellDef> Rule </th>
+      <td class="middle" mat-cell *matCellDef="let element"> {{element.rule}} </td>
+    </ng-container>
+  
+    <!-- Example Column -->
+    
+      <ng-container matColumnDef="example">
+        <th mat-header-cell *matHeaderCellDef> Example: to drink </th>
+        <td class="end" mat-cell *matCellDef="let element"> {{element.example}} </td>
+      </ng-container>
+    
+    
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+
+</mat-expansion-panel>
+  
+  
 
     <mat-expansion-panel>
       <mat-expansion-panel-header>

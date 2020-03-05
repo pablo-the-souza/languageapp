@@ -1,13 +1,14 @@
-<section class="exercises">
+<section class="exercises" *ngIf="exerciseForm">
   <form
     fxLayout="column"
-    fxLayoutGap="2px"
+    fxLayoutGap="500px"
     [formGroup]="exerciseForm"
     (ngSubmit)="onSubmit(exerciseForm.value)"
   >
-    <ul *ngFor="let exercise of exercises">
-      <li>{{ exercise.instruction }}</li>
-      <ul *ngFor="let question of exercise.questions; let i = index">
+    <!-- <ul *ngFor="let exercise of exerciseTest | async"></ul> -->
+    <div *ngFor="let instruction of instructions">
+      {{ instruction.instruction }}
+      <ul *ngFor="let question of exerciseTest">
         <li>
           {{ question.prefix }}
           <mat-form-field>
@@ -16,19 +17,28 @@
               type="text"
               id="answer"
               matInput
-              [formControlName]="question.id"
-            />
+              [formControlName]=""
+            >
           </mat-form-field>
-          {{ question.sufix }} -
+          
+          {{ question.sufix }} 
+          <mat-form-field>
+            <input
+              name="answer"
+              type="text"
+              id="answer"
+              matInput
+              [formControlName]=""
+            >
+          </mat-form-field>
           {{ question.translation }}
           <div *ngIf="isAnswered">
             <div *ngIf="question.result"><p>Correct</p></div>
             <div *ngIf="!question.result"><p>Incorrect</p></div>
           </div>
-          
         </li>
       </ul>
-    </ul>
+      </div>
     <button *ngIf="!isAnswered" type="submit" mat-raised-button color="primary">Submit</button>
     <button *ngIf="isAnswered" type="submit" mat-raised-button color="primary"  (click)="resetForm()">
       Try Again

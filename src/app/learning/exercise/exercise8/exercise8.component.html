@@ -5,7 +5,7 @@
     [formGroup]="exerciseForm"
     (ngSubmit)="onSubmit(exerciseForm.value)"
   >
-    <ul *ngFor="let exercise of singleExercise">
+    <ul *ngFor="let exercise of singleExercise; let i=index">
       <li>{{ exercise.instruction }}</li>
       <ul *ngFor="let question of exercise.questions; let i = index">
         <li>
@@ -47,4 +47,6 @@
     
   </form>
 </section>
+
+
 
